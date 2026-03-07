@@ -5,19 +5,23 @@ import { Mail, Phone, ExternalLink, ArrowUpRight, Check } from 'lucide-react';
 const Portfolio = () => {
   // 모든 경험 데이터를 통합하여 시간 역순으로 정렬
   const experiences = [
-    { date: '2026', title: '추나 급여 사전교육 / 정인적방 척추관절통 강의 이수', org: '대한한의사협회 / 메디스트림', tag: '임상/교육', color: 'bg-emerald-100 text-emerald-700' },
-    { date: '2026', title: '한정협 제모 스터디 / 마음침 강의 수료', org: '한국정진한의학협회', tag: '임상/교육', color: 'bg-emerald-100 text-emerald-700' },
+    { date: '2026', title: '추나 급여 사전교육 이수', org: '대한한의사협회', tag: '수료', color: 'bg-emerald-100 text-emerald-700' },
+    { date: '2026', title: '정인적방 척추관절통 강의 수강', org: '메디스트림', tag: '수강', color: 'bg-emerald-100 text-emerald-700' },
+    { date: '2026', title: '한정협 제모 스터디 수료', org: '한국정진한의학협회', tag: '수료', color: 'bg-emerald-100 text-emerald-700' },
+    { date: '2025', title: '마음침 강의 수료', org: '메디스트림', tag: '수료', color: 'bg-emerald-100 text-emerald-700' },
     { date: '2022 - 2025', title: '양생기능의학교실 학생연구원', org: '부산대학교 한의학전문대학원', tag: '연구', color: 'bg-blue-100 text-blue-700' },
     { date: '2023.01 - 2024.08', title: '동제의료봉사단 부회장', org: '부산대학교 한의학전문대학원', tag: '리더십', color: 'bg-purple-100 text-purple-700' },
     { date: '2022.08 - 2024.12', title: '진로탐색동아리 회장', org: '부산대학교 한의학전문대학원', tag: '리더십', color: 'bg-purple-100 text-purple-700' },
-    { date: '2024', title: '사암침 캠프 / MPS 캠프 / 근골격계 알고리즘 이수', org: '메디스트림 / 학회', tag: '임상/교육', color: 'bg-emerald-100 text-emerald-700' },
+    { date: '2024', title: '사암침 캠프 수료', org: '메디스트림', tag: '수료', color: 'bg-emerald-100 text-emerald-700' },
+    { date: '2024', title: 'MPS 캠프 수료', org: '메디스트림', tag: '수료', color: 'bg-emerald-100 text-emerald-700' },
+    { date: '2024', title: '근골격계 알고리즘 일차진료 마스터 강의 수강', org: '메디스트림', tag: '수강', color: 'bg-emerald-100 text-emerald-700' },
     { date: '2021', title: '물류연구실 공식 홈페이지 개발', org: '포항공과대학교', tag: '개발', color: 'bg-orange-100 text-orange-700' },
     { date: '2019 - 2022', title: '물류연구실 석·박사통합과정 연구원', org: '포항공과대학교', tag: '연구', color: 'bg-blue-100 text-blue-700' },
-    { date: '2019.12 - 2020.12', title: '현대중공업 3D BPP 알고리즘 개발 실무', org: '포항공과대학교 기업협업', tag: '개발', color: 'bg-orange-100 text-orange-700' },
-    { date: '2019.09 - 2020.12', title: '드론 배치 알고리즘 개발 실무', org: '포항공과대학교', tag: '개발', color: 'bg-orange-100 text-orange-700' },
-    { date: '2019', title: '빅데이터 처리 파이프라인 구축 (인턴)', org: '넷마블', tag: '개발', color: 'bg-orange-100 text-orange-700' },
+    { date: '2019.12 - 2020.12', title: '현대중공업 3D BPP 알고리즘 개발', org: '포항공과대학교', tag: '개발', color: 'bg-orange-100 text-orange-700' },
+    { date: '2019.09 - 2020.12', title: '드론 배치 알고리즘 개발', org: '포항공과대학교', tag: '개발', color: 'bg-orange-100 text-orange-700' },
+    { date: '2019', title: '빅데이터 처리 파이프라인 구축 [인턴]', org: '넷마블', tag: '개발', color: 'bg-orange-100 text-orange-700' },
     { date: '2019.02 - 2019.11', title: 'R 프로그래밍 및 기초통계 MOOC 강의 조교', org: 'POSTECH', tag: '교육', color: 'bg-indigo-100 text-indigo-700' },
-    { date: '2018', title: '생산설비 모니터링 시스템 구축 (인턴)', org: 'LG CNS', tag: '개발', color: 'bg-orange-100 text-orange-700' }
+    { date: '2018', title: '생산설비 모니터링 시스템 구축 [인턴]', org: 'LG CNS', tag: '개발', color: 'bg-orange-100 text-orange-700' }
   ];
 
   return (
@@ -55,10 +59,10 @@ const Portfolio = () => {
               따뜻한 진심과 냉철한 논리를 바탕으로 환자에게 가장 적절한 선택을 제안합니다.
             </motion.p>
           </div>
-          <div className="lg:col-span-4 aspect-[4/5] bg-slate-800 rounded-3xl overflow-hidden border-2 border-white/5 shadow-2xl grayscale hover:grayscale-0 transition-all duration-1000">
+          <div className="lg:col-span-4 aspect-[4/5] bg-slate-800 rounded-3xl overflow-hidden border-2 border-white/5 shadow-2xl hover:grayscale-0 transition-all duration-1000">
              {/* public/profile.jpg 파일이 나타납니다 */}
              {/* Hero Section 내의 이미지 영역 수정 */}
-<div className="lg:col-span-4 aspect-[4/5] bg-slate-800 rounded-3xl overflow-hidden border-2 border-white/5 shadow-2xl grayscale hover:grayscale-0 transition-all duration-1000 relative group">
+<div className="lg:col-span-4 aspect-[4/5] bg-slate-100 rounded-3xl overflow-hidden border-2 border-white/5 shadow-2xl transition-all duration-1000 relative group">
   <img 
     src="/profile.jpg" 
     alt="한의사 이주은" 
@@ -201,7 +205,7 @@ const Portfolio = () => {
       {/* 7. Lifestyle (주은님만의 감성 반영) */}
       <section className="py-32 bg-slate-900 text-white px-10">
         <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-xs font-bold text-slate-500 uppercase tracking-[0.5em] mb-24 italic">Balance in Life</h2>
+          <h2 className="text-2xl font-bold text-slate-500 uppercase tracking-[0.5em] mb-24 italic">Balance in Life</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-24">
             <div>
               <span className="text-[11px] font-black text-teal-400 uppercase tracking-widest mb-6 block italic">Swimming</span>
