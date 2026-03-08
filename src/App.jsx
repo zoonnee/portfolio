@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, Phone, ExternalLink, ArrowUpRight, Check } from 'lucide-react';
+import { Mail, Phone, ExternalLink, ArrowUpRight, Check, X } from 'lucide-react';
 
 const Portfolio = () => {
   const [activeFilter, setActiveFilter] = useState('All');
+  const [selectedImg, setSelectedImg] = useState(null); // 추가
 
   // 1. 모든 경험 데이터 통합 (기관명: 한의정보협동조합 확정 및 문구 정제)
   const experiences = [
@@ -37,7 +38,7 @@ const Portfolio = () => {
 
   return (
     <div className="min-h-screen bg-[#f8fafc] text-[#1e293b] font-['Pretendard'] selection:bg-teal-100">
-      
+
       {/* 1. Navigation */}
       <nav className="fixed top-0 w-full z-50 bg-[#0f172a] text-white">
         <div className="max-w-7xl mx-auto px-10 py-5 flex justify-between items-center font-black uppercase tracking-tighter italic">
@@ -64,7 +65,9 @@ const Portfolio = () => {
             </h1>
             <p className="text-xl text-slate-400 font-medium leading-relaxed max-w-2xl">따뜻한 진심과 냉철한 논리를 바탕으로 환자에게 가장 적절한 선택을 제안합니다.</p>
           </div>
-          <div className="lg:col-span-4 aspect-[4/5] bg-slate-100 rounded-3xl overflow-hidden shadow-2xl relative group">
+          <div 
+            onClick={() => setIsProfileOpen(true)}
+            className="lg:col-span-4 aspect-[4/5] bg-slate-100 rounded-3xl overflow-hidden shadow-2xl relative group cursor-pointer">
             <img src="/profile.jpg" alt="한의사 이주은" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
           </div>
         </div>
@@ -197,15 +200,21 @@ const Portfolio = () => {
           </div>
           <div id="publications">
             <h2 className="text-3xl font-black text-teal-400 mb-16 uppercase">Publications</h2>
-            <div className="space-y-10">
-              {[
-                { d: '2024.10', t: 'Zuojin Pill enhances gastrointestinal motility by modulating the pacemaker potentials in interstitial cells of Cajal through multiple signaling pathways', j: 'Int J Med Sci (SCIE)', l: 'https://pubmed.ncbi.nlm.nih.gov/39628697/' },
-                { d: '2024.06', t: '네트워크 약리학 연구를 통한 좌금환의 기능성 소화불량증 치료기전 연구', j: '대한한의학 방제학회지 (KCI)', l: 'https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART003117615' }              ].map((pub, i) => (
-                <a key={i} href={pub.l} target="_blank" rel="noopener noreferrer" className="block group border-l border-white/10 pl-8 py-2 hover:border-teal-400 transition-all">
-                  <span className="text-[10px] font-black text-slate-500 block mb-3 tracking-widest">{pub.d}</span>
-                  <h4 className="text-[1.1rem] leading-snug mb-3 group-hover:text-slate-200 transition-colors break-keep">{pub.t}</h4>
-                  <div className="flex items-center gap-2 text-[10px] font-black text-teal-500 uppercase tracking-widest">{pub.j} <ArrowUpRight size={12} /></div>
-                </a>
+            <div className="space-y-16">
+              {[ 
+                { d: '2024.10', t: 'Zuojin Pill enhances gastrointestinal motility...', j: 'Int J Med Sci (SCIE)', l: 'https://pubmed.ncbi.nlm.nih.gov/39628697/', img: '/sci.jpg' },
+                { d: '2024.06', t: '네트워크 약리학 연구를 통한 좌금환의 기능성 소화불량증 치료기전 연구', j: '대한한의학 방제학회지 (KCI)', l: 'https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART003117615', img: '/kci.jpg' }
+              ].map((pub, i) => (
+                <div key={i} className="flex flex-col md:flex-row gap-10 items-start group">
+                  <div className="w-full md:w-56 aspect-[4/3] bg-slate-800 rounded-2xl overflow-hidden flex-shrink-0 border border-white/10 shadow-xl cursor-zoom-in" onClick={() => setSelectedImg(pub.img)}>
+                    <img src={pub.img} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-80 group-hover:opacity-100" />
+                  </div>
+                  <a href={pub.l} target="_blank" rel="noopener noreferrer" className="flex-1 block border-l border-white/10 pl-8 py-2 hover:border-teal-400 transition-all font-bold tracking-tight">
+                    <span className="text-[10px] font-black text-slate-500 block mb-3 tracking-widest">{pub.d}</span>
+                    <h4 className="text-[1.2rem] leading-snug mb-4 group-hover:text-slate-200 transition-colors break-keep italic">{pub.t}</h4>
+                    <div className="flex items-center gap-2 text-[10px] font-black text-teal-500 uppercase tracking-widest">{pub.j} <ArrowUpRight size={14} /></div>
+                  </a>
+                </div>
               ))}
             </div>
           </div>
@@ -231,13 +240,12 @@ const Portfolio = () => {
       {/* 7. Balance in Life 복구 */}
       <section className="py-32 bg-slate-900 text-white px-10">
         <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-2xl font-bold text-slate-500 uppercase tracking-[0.5em] mb-24 italic">Balance in Life</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-24">
+          <h2 className="text-3xl font-black text-teal-400 mb-16 uppercase">Balance in Life</h2>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-24">
             <div><span className="text-[11px] font-black text-teal-400 uppercase tracking-widest mb-6 block italic">Swimming</span><p className="text-slate-400 leading-[2] break-keep text-base font-medium">평온함과 역동감을 동시에 느끼면서 호흡을 조절하는 것에 집중하는 시간이 좋습니다.</p></div>
             <div><span className="text-[11px] font-black text-teal-400 uppercase tracking-widest mb-6 block italic">Drum</span><p className="text-slate-400 leading-[2] break-keep text-base font-medium">일상의 긴장을 해소하고 활력을 얻습니다.</p></div>
             <div><span className="text-[11px] font-black text-teal-400 uppercase tracking-widest mb-6 block italic">Piano</span><p className="text-slate-400 leading-[2] break-keep text-base font-medium">쇼팽 콩쿠르를 시청하며 국가고시를 준비했던 것이 기억납니다.</p></div>
             <div><span className="text-[11px] font-black text-teal-400 uppercase tracking-widest mb-6 block italic">Chess</span><p className="text-slate-400 leading-[2] break-keep text-base font-medium">직접 두는 실력보다, 친구들 플레이에 훈수두는 재미를 잘 압니다.</p></div>
-            <div><span className="text-[11px] font-black text-teal-400 uppercase tracking-widest mb-6 block italic">Poker</span><p className="text-slate-400 leading-[2] break-keep text-base font-medium">All in</p></div>
           </div>
         </div>
       </section>
