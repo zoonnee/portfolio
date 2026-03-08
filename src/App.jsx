@@ -56,7 +56,7 @@ const Portfolio = () => {
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center relative z-10">
           <div className="lg:col-span-8">
             <div className="flex items-center gap-2 mb-6 text-teal-400 text-xs font-bold tracking-[0.4em] uppercase">
-              <span className="w-8 h-[1px] bg-teal-400"></span> Warm Heart, Cool Logic
+              <span className="w-8 h-[1px] bg-teal-400"></span> Cool head and warm heart
             </div>
             <h1 className="text-5xl md:text-[5.5rem] font-black mb-10 leading-[1] tracking-tight">
               마음으로 공감하고 <br/>
@@ -110,9 +110,9 @@ const Portfolio = () => {
               <h2 className="text-3xl font-black text-[#0f172a] mb-12 tracking-tight uppercase border-l-4 border-teal-500 pl-6">Clinical Interests</h2>
               <div className="space-y-8">
                 {[
-                  { n: '근골격·추나', p: '95%' }, 
-                  { n: '초음파 진단', p: '90%' }, 
-                  { n: '소화·호흡기', p: '85%' }, 
+                  { n: '근골격·추나', p: '90%' }, 
+                  { n: '초음파', p: '95%' }, 
+                  { n: '소화기', p: '80%' }, 
                   { n: '부인·소아', p: '80%' }, 
                   { n: '피부·미용', p: '80%' }
                 ].map((item, i) => (
@@ -208,6 +208,36 @@ const Portfolio = () => {
                 </a>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 6. Awards & Scholarship 복구 */}
+      <section id="awards" className="py-32 px-10 bg-white border-b border-slate-100">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-3xl font-black text-[#0f172a] mb-20 tracking-tight uppercase text-center">Awards & Scholarship</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[ { y: '2026', t: '최우수연구자상', o: '부산대학교 한의학전문대학원' }, { y: '2026', t: '대한한방병원협회장상', o: '부산대학교 한의학전문대학원' }, { y: '2022-2025', t: '성적우수장학금', o: '부산대학교' }, { y: '2020', t: '전민근연구실장학금', o: '포항공과대학교' } ].map((award, i) => (
+              <div key={i} className="group p-8 border border-slate-100 rounded-3xl hover:bg-slate-50 transition-colors">
+                <span className="text-[11px] font-black text-slate-200 block mb-4 tracking-[0.3em] group-hover:text-teal-600 transition-colors">{award.y}</span>
+                <h4 className="text-lg font-bold mb-2 text-slate-900 tracking-tight">{award.t}</h4>
+                <p className="text-slate-400 text-[10px] font-bold uppercase tracking-widest">{award.o}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 7. Balance in Life 복구 */}
+      <section className="py-32 bg-slate-900 text-white px-10">
+        <div className="max-w-7xl mx-auto text-center">
+          <h2 className="text-2xl font-bold text-slate-500 uppercase tracking-[0.5em] mb-24 italic">Balance in Life</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-24">
+            <div><span className="text-[11px] font-black text-teal-400 uppercase tracking-widest mb-6 block italic">Swimming</span><p className="text-slate-400 leading-[2] break-keep text-base font-medium">평온함과 역동감을 동시에 느끼면서 호흡을 조절하는 것에 집중하는 시간이 좋습니다.</p></div>
+            <div><span className="text-[11px] font-black text-teal-400 uppercase tracking-widest mb-6 block italic">Drum</span><p className="text-slate-400 leading-[2] break-keep text-base font-medium">일상의 긴장을 해소하고 활력을 얻습니다.</p></div>
+            <div><span className="text-[11px] font-black text-teal-400 uppercase tracking-widest mb-6 block italic">Piano</span><p className="text-slate-400 leading-[2] break-keep text-base font-medium">쇼팽 콩쿠르를 시청하며 국가고시를 준비했던 것이 기억납니다.</p></div>
+            <div><span className="text-[11px] font-black text-teal-400 uppercase tracking-widest mb-6 block italic">Chess</span><p className="text-slate-400 leading-[2] break-keep text-base font-medium">직접 두는 실력보다, 친구들 플레이에 훈수두는 재미를 잘 압니다.</p></div>
+            <div><span className="text-[11px] font-black text-teal-400 uppercase tracking-widest mb-6 block italic">Poker</span><p className="text-slate-400 leading-[2] break-keep text-base font-medium">All in</p></div>
           </div>
         </div>
       </section>
