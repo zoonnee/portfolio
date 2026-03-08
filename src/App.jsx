@@ -38,6 +38,35 @@ const Portfolio = () => {
 
   return (
     <div className="min-h-screen bg-[#f8fafc] text-[#1e293b] font-['Pretendard'] selection:bg-teal-100">
+    
+      {/* 이미지 확대 라이트박스 */}
+      <AnimatePresence>
+        {selectedImg && (
+          <motion.div 
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[110] bg-black/95 backdrop-blur-md flex items-center justify-center p-4 md:p-20"
+            //onClick={() => setSelectedImg(null)} // 배경 누르면 닫힘
+          >
+            <motion.div 
+              initial={{ scale: 0.9 }} animate={{ scale: 1 }} exit={{ scale: 0.9 }}
+              className="relative max-w-6xl w-full h-full flex items-center justify-center"
+              onClick={e => e.stopPropagation()} // 이미지 클릭시엔 안닫힘
+            >
+              <button 
+                onClick={() => setSelectedImg(null)} 
+                className="absolute -top-12 right-0 text-white hover:text-teal-400 flex items-center gap-2 font-black uppercase text-sm tracking-widest"
+              >
+                Close <X size={24} />
+              </button>
+              <img 
+                src={selectedImg} 
+                alt="논문 확대 이미지" 
+                className="max-w-full max-h-full object-contain rounded-lg shadow-2xl" 
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* 1. Navigation */}
       <nav className="fixed top-0 w-full z-50 bg-[#0f172a] text-white">
@@ -180,59 +209,112 @@ const Portfolio = () => {
         </div>
       </section>
 
-      {/* 5. Education & Publications (링크 수정) */}
-      <section className="py-32 bg-[#0f172a] text-white px-10">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-32 font-bold tracking-tight">
-          <div>
-            <h2 className="text-3xl font-black text-teal-400 mb-16 uppercase">Education</h2>
-            <div className="space-y-12">
-              {[
-                { s: '부산대학교 한의학전문대학원', d: '한의학 석사', t: '2022 - 2026' },
-                { s: 'Graz University of Technology', d: '교환학생 과정', t: '2018 - 2019' },
-                { s: '포항공과대학교', d: '산업경영공학 학사', t: '2015 - 2019' }
-              ].map((edu, i) => (
-                <div key={i} className="group border-l border-white/10 pl-8 py-2 hover:border-teal-400 transition-all">
-                  <h4 className="text-2xl mb-2 group-hover:text-teal-400 transition-colors">{edu.s}</h4>
-                  <p className="text-slate-400 text-sm italic uppercase tracking-widest font-black">{edu.d} · {edu.t}</p>
+      {/* 5. Publications (설명 문구 추가 버전) */}
+      <section id="publications" className="py-40 bg-[#0f172a] text-white px-10">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-4xl font-black text-teal-400 mb-24 uppercase italic tracking-tighter">Featured Publications</h2>
+          <div className="space-y-32">
+            {[ 
+              { 
+                d: '2024.10', 
+                t: 'Zuojin Pill enhances gastrointestinal motility by modulating the pacemaker potentials in interstitial cells of Cajal through multiple signaling pathways', 
+                j: 'INTERNATIONAL JOURNAL OF MEDICAL SCIENCES (SCIE)', 
+                l: 'https://pubmed.ncbi.nlm.nih.gov/39628697/', 
+                img: '/sci.jpg',
+                desc: '패치 클램프(Patch-clamp) 기술을 통해 좌금환이 장내 박동세포(ICC)의 전기적 신호를 조절하여 위장관 운동성을 향상시키는 미시적 기전을 규명했습니다.' //
+              }, 
+              { 
+                d: '2024.06', 
+                t: '네트워크 약리학 연구를 통한 좌금환의 기능성 소화불량증 치료기전 연구', 
+                j: '대한한의학 방제학회지 (KCI)', 
+                l: 'https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART003117615', 
+                img: '/kci.jpg',
+                desc: '네트워크 약리학을 활용하여 좌금환의 40개 활성 성분과 115개 타겟 간의 상호작용을 분석하고, 다중 성분의 복합적 치료 기전을 거시적 관점에서 가시화했습니다.' //
+              } 
+            ].map((pub, i) => (
+              <div key={i} className="flex flex-col lg:flex-row gap-20 items-center lg:items-start group">
+                {/* 논문 그림 영역 */}
+                <div 
+                  className="w-full lg:w-3/5 aspect-video bg-slate-800 rounded-[2.5rem] overflow-hidden flex-shrink-0 cursor-zoom-in border border-white/10 shadow-2xl relative"
+                  onClick={() => setSelectedImg(pub.img)}
+                >
+                  <img src={pub.img} alt="Publication Figure" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-90 group-hover:opacity-100" />
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors" />
                 </div>
-              ))}
-            </div>
-          </div>
-          <div id="publications">
-            <h2 className="text-3xl font-black text-teal-400 mb-16 uppercase">Publications</h2>
-            <div className="space-y-16">
-              {[ 
-                { d: '2024.10', t: 'Zuojin Pill enhances gastrointestinal motility...', j: 'Int J Med Sci (SCIE)', l: 'https://pubmed.ncbi.nlm.nih.gov/39628697/', img: '/sci.jpg' },
-                { d: '2024.06', t: '네트워크 약리학 연구를 통한 좌금환의 기능성 소화불량증 치료기전 연구', j: '대한한의학 방제학회지 (KCI)', l: 'https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART003117615', img: '/kci.jpg' }
-              ].map((pub, i) => (
-                <div key={i} className="flex flex-col md:flex-row gap-10 items-start group">
-                  <div className="w-full md:w-56 aspect-[4/3] bg-slate-800 rounded-2xl overflow-hidden flex-shrink-0 border border-white/10 shadow-xl cursor-zoom-in" onClick={() => setSelectedImg(pub.img)}>
-                    <img src={pub.img} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-80 group-hover:opacity-100" />
-                  </div>
-                  <a href={pub.l} target="_blank" rel="noopener noreferrer" className="flex-1 block border-l border-white/10 pl-8 py-2 hover:border-teal-400 transition-all font-bold tracking-tight">
-                    <span className="text-[10px] font-black text-slate-500 block mb-3 tracking-widest">{pub.d}</span>
-                    <h4 className="text-[1.2rem] leading-snug mb-4 group-hover:text-slate-200 transition-colors break-keep italic">{pub.t}</h4>
-                    <div className="flex items-center gap-2 text-[10px] font-black text-teal-500 uppercase tracking-widest">{pub.j} <ArrowUpRight size={14} /></div>
+                
+                {/* 논문 정보 영역 */}
+                <div className="flex-1">
+                  <span className="text-xs font-black text-slate-500 block mb-6 tracking-[0.4em] uppercase">{pub.d}</span>
+                  <h4 className="text-2xl md:text-3xl font-bold leading-tight mb-6 group-hover:text-teal-400 transition-colors break-keep">{pub.t}</h4>
+                  
+                  {/* 설명 문구 추가 부분 */}
+                  <p className="text-slate-400 leading-relaxed mb-8 font-medium break-keep">
+                    {pub.desc}
+                  </p>
+
+                  <p className="text-teal-500/80 font-black uppercase tracking-[0.2em] text-sm mb-10 italic">
+                    {pub.j}
+                  </p>
+                  <a 
+                    href={pub.l} target="_blank" rel="noopener noreferrer" 
+                    className="inline-flex items-center gap-3 px-10 py-5 rounded-full border border-white/20 hover:bg-white hover:text-black transition-all font-black uppercase text-xs tracking-widest"
+                  >
+                    View Full Paper <ArrowUpRight size={20} />
                   </a>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* 6. Awards & Scholarship 복구 */}
-      <section id="awards" className="py-32 px-10 bg-white border-b border-slate-100">
+      {/* 6. Credentials (Education & Awards 통합 섹션) */}
+      <section id="credentials" className="py-32 px-10 bg-slate-50 border-y border-slate-200">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl font-black text-[#0f172a] mb-20 tracking-tight uppercase text-center">Awards & Scholarship</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[ { y: '2026', t: '최우수연구자상', o: '부산대학교 한의학전문대학원' }, { y: '2026', t: '대한한방병원협회장상', o: '부산대학교 한의학전문대학원' }, { y: '2022-2025', t: '성적우수장학금', o: '부산대학교' }, { y: '2020', t: '전민근연구실장학금', o: '포항공과대학교' } ].map((award, i) => (
-              <div key={i} className="group p-8 border border-slate-100 rounded-3xl hover:bg-slate-50 transition-colors">
-                <span className="text-[11px] font-black text-slate-200 block mb-4 tracking-[0.3em] group-hover:text-teal-600 transition-colors">{award.y}</span>
-                <h4 className="text-lg font-bold mb-2 text-slate-900 tracking-tight">{award.t}</h4>
-                <p className="text-slate-400 text-[10px] font-bold uppercase tracking-widest">{award.o}</p>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-20">
+            
+            {/* 좌측: Education (학력) */}
+            <div className="lg:col-span-7">
+              <h2 className="text-3xl font-black text-[#0f172a] mb-12 tracking-tight uppercase italic border-l-4 border-teal-500 pl-6">Education</h2>
+              <div className="space-y-6">
+                {[
+                  { s: '부산대학교 한의학전문대학원', d: '한의학 석사', t: '2022 - 2026' },
+                  { s: 'Graz University of Technology', d: '교환학생 과정', t: '2018 - 2019' },
+                  { s: '포항공과대학교 (POSTECH)', d: '산업경영공학 학사', t: '2015 - 2019' }
+                ].map((edu, i) => (
+                  <div key={i} className="group bg-white p-8 rounded-3xl border border-slate-100 hover:border-teal-400 transition-all shadow-sm">
+                    <h4 className="text-xl font-bold mb-2 text-slate-800 group-hover:text-teal-600 transition-colors">{edu.s}</h4>
+                    <div className="flex justify-between items-end">
+                      <p className="text-slate-500 text-sm font-medium uppercase tracking-widest">{edu.d}</p>
+                      <span className="text-xs font-black text-slate-300 group-hover:text-slate-900 transition-colors">{edu.t}</span>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
+
+            {/* 우측: Awards & Scholarship (수상) */}
+            <div className="lg:col-span-5">
+              <h2 className="text-3xl font-black text-[#0f172a] mb-12 tracking-tight uppercase italic border-l-4 border-teal-500 pl-6">Awards</h2>
+              <div className="bg-white rounded-[3rem] p-10 border border-slate-100 shadow-sm h-full">
+                <div className="space-y-10">
+                  {[
+                    { y: '2026', t: '최우수연구자상', o: '부산대 한의전' },
+                    { y: '2026', t: '대한한방병원협회장상', o: '부산대 한의전' },
+                    { y: '2022-2025', t: '성적우수장학금', o: '부산대학교' },
+                    { y: '2020', t: '전민근연구실장학금', o: 'POSTECH' }
+                  ].map((award, i) => (
+                    <div key={i} className="relative pl-8 border-l border-slate-100 group">
+                      <div className="absolute -left-[5px] top-1 w-2 h-2 rounded-full bg-slate-200 group-hover:bg-teal-500 transition-colors" />
+                      <span className="text-[10px] font-black text-slate-300 group-hover:text-teal-600 transition-colors uppercase tracking-[0.2em] mb-1 block">{award.y}</span>
+                      <h4 className="text-lg font-bold text-slate-800 leading-tight mb-1">{award.t}</h4>
+                      <p className="text-slate-400 text-[10px] font-bold uppercase tracking-widest">{award.o}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
@@ -250,23 +332,53 @@ const Portfolio = () => {
         </div>
       </section>
 
-      {/* 8. Footer (연락처 연동) */}
-      <footer id="contact" className="py-48 bg-white text-center px-10">
-        <h2 className="text-3xl md:text-5xl font-black mb-16 tracking-tighter text-[#0f172a] leading-tight">
-          능동적인 배움과 즉각적인 실천으로 <br/>한의원의 성장에 확실히 기여하겠습니다.
-        </h2>
-        <div className="flex flex-col md:flex-row justify-center gap-16 mb-24 font-black">
-          <a href="tel:01055602182" className="flex flex-col items-center gap-3 hover:scale-105 transition-transform group">
-            <span className="text-[10px] text-slate-300 uppercase tracking-widest group-hover:text-teal-600 transition-colors">Phone</span>
-            <span className="text-2xl text-slate-800">010-5560-2182</span>
-          </a>
-          <a href="mailto:zoosilver@naver.com" className="flex flex-col items-center gap-3 hover:scale-105 transition-transform group">
-            <span className="text-[10px] text-slate-300 uppercase tracking-widest group-hover:text-teal-600 transition-colors">Email</span>
-            <span className="text-2xl text-slate-800 underline decoration-teal-500 underline-offset-8">zoosilver@naver.com</span>
-          </a>
+      {/* 9. Final Commitment (다짐 문구 강화 버전) */}
+      <footer id="contact" className="relative py-60 bg-white overflow-hidden">
+        {/* 배경 장식 요소: 은은한 그리드와 블러 효과 */}
+        <div className="absolute inset-0 opacity-[0.03] pointer-events-none" 
+             style={{ backgroundImage: 'radial-gradient(#0f172a 1px, transparent 1px)', size: '40px 40px' }} />
+        
+        <div className="max-w-7xl mx-auto px-10 relative z-10">
+          <div className="flex flex-col items-center">
+            {/* 상단 뱃지 */}
+            <motion.div 
+              whileInView={{ y: 0, opacity: 1 }} initial={{ y: 20, opacity: 0 }}
+              className="px-6 py-2 rounded-full border border-teal-500/30 text-teal-600 text-xs font-black uppercase tracking-[0.5em] mb-12 italic"
+            >
+              Commitment to Excellence
+            </motion.div>
+
+            {/* 메인 슬로건: 그라데이션 및 타이포그래피 강조 */}
+            <h2 className="text-4xl md:text-7xl font-[900] mb-20 tracking-tighter leading-[1.1] text-center">
+              <span className="text-[#0f172a]">능동적인 배움과</span> <br/>
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-teal-500 to-emerald-600">
+                즉각적인 실천으로
+              </span> <br/>
+              <span className="text-[#0f172a] border-b-8 border-teal-100 pb-2">성장에 확실히 기여하겠습니다.</span>
+            </h2>
+
+            {/* 연락처 영역: 가로 구분선과 세련된 레이아웃 */}
+            <div className="w-full max-w-4xl h-[1px] bg-slate-100 mb-20" />
+            
+            <div className="flex flex-col md:flex-row justify-center gap-20 md:gap-40 w-full font-black">
+              <a href="tel:01055602182" className="group flex flex-col items-center gap-4 transition-transform hover:-translate-y-2">
+                <span className="text-[11px] text-slate-400 uppercase tracking-[0.4em] group-hover:text-teal-500 transition-colors">Direct Phone</span>
+                <span className="text-3xl text-slate-800 tracking-tighter transition-colors group-hover:text-[#0f172a]">010.5560.2182</span>
+              </a>
+              <a href="mailto:zoosilver@naver.com" className="group flex flex-col items-center gap-4 transition-transform hover:-translate-y-2">
+                <span className="text-[11px] text-slate-400 uppercase tracking-[0.4em] group-hover:text-teal-500 transition-colors">Official Email</span>
+                <span className="text-3xl text-slate-800 tracking-tighter transition-colors group-hover:text-[#0f172a] border-b-2 border-teal-500/20">zoosilver@naver.com</span>
+              </a>
+            </div>
+            
+            {/* 저작권 표시 */}
+            <div className="mt-40 text-[10px] text-slate-400 font-black uppercase tracking-[0.6em]">
+              © 2026 Lee Jueun. All Rights Reserved.
+            </div>
+          </div>
         </div>
-        <p className="text-[10px] text-slate-200 font-black uppercase tracking-[0.4em]">© 2026 Korean Medicine Doctor Lee Ju-eun.</p>
       </footer>
+
     </div>
   );
 };
