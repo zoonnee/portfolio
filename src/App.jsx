@@ -66,6 +66,74 @@ const Portfolio = () => {
         </div>
       </header>
 
+      {/* 3. Philosophy & Clinical Interests 섹션 */}
+      <section id="philosophy" className="py-32 px-10 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-32">
+            {/* Philosophy 섹션 - 자기소개서 내용 기반 */}
+            <div>
+              <h2 className="text-3xl font-black text-[#0f172a] mb-12 tracking-tight uppercase border-l-4 border-teal-500 pl-6">Philosophy</h2>
+              <div className="space-y-12">
+                <div className="group">
+                  <h3 className="text-xl font-bold mb-3 flex items-center gap-3 tracking-tight">
+                    <Check className="text-teal-500" size={20} /> 명확한 근거와 납득 가능한 치료
+                  </h3>
+                  <p className="text-slate-500 leading-relaxed break-keep font-medium">
+                    환자가 자신의 상태를 명확히 이해하고 치료에 참여할 수 있도록 데이터와 시각적 근거를 제시합니다.
+                  </p>
+                </div>
+                <div className="group">
+                  <h3 className="text-xl font-bold mb-3 flex items-center gap-3 tracking-tight">
+                    <Check className="text-teal-500" size={20} /> 시스템적 접근을 통한 근본 치료
+                  </h3>
+                  <p className="text-slate-500 leading-relaxed break-keep font-medium">
+                    공학적 사고를 바탕으로 신체의 구조적 불균형과 시스템적 오류를 분석하여 재발 없는 치료를 지향합니다. 
+                  </p>
+                </div>
+                <div className="group">
+                  <h3 className="text-xl font-bold mb-3 flex items-center gap-3 tracking-tight">
+                    <Check className="text-teal-500" size={20} /> 일관성 있는 행동으로 쌓는 신뢰
+                  </h3>
+                  <p className="text-slate-500 leading-relaxed break-keep font-medium">
+                    경청과 공감, 그리고 흔들리지 않는 안정적인 진료를 통해 환자와의 깊은 신뢰 관계를 형성합니다. 
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Clinical Interests 섹션 - 숙련도 지표 반영 */}
+            <div>
+              <h2 className="text-3xl font-black text-[#0f172a] mb-12 tracking-tight uppercase border-l-4 border-teal-500 pl-6">Clinical Interests</h2>
+              <div className="space-y-8">
+                {[
+                  { n: '근골격·추나', p: '95%' }, 
+                  { n: '초음파 진단', p: '90%' }, 
+                  { n: '소화·호흡기', p: '85%' }, 
+                  { n: '부인·소아', p: '80%' }, 
+                  { n: '피부·미용', p: '80%' }
+                ].map((item, i) => (
+                  <div key={i}>
+                    <div className="flex justify-between mb-2 text-sm font-black text-slate-800 uppercase tracking-widest">
+                      <span>{item.n}</span>
+                      <span className="text-teal-600">{item.p}</span>
+                    </div>
+                    <div className="h-[2px] bg-slate-100 w-full overflow-hidden">
+                      <motion.div 
+                        whileInView={{ width: item.p }} 
+                        initial={{ width: 0 }} 
+                        viewport={{ once: true }} 
+                        transition={{ duration: 1.2, ease: "easeOut" }}
+                        className="h-full bg-[#0f172a]" 
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* 4. Professional Experience (필터 버튼 & 팩트 정정) */}
       <section id="experience" className="py-32 px-10 bg-slate-50">
         <div className="max-w-7xl mx-auto">
