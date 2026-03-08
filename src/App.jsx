@@ -9,21 +9,25 @@ const Portfolio = () => {
   const experiences = [
     { date: '2026', title: '추나 급여 사전교육', org: '대한한의사협회', tag: '강의', color: 'bg-emerald-100 text-emerald-700' },
     { date: '2026', title: '정인적방 척추관절통 강의', org: '메디스트림', tag: '강의', color: 'bg-emerald-100 text-emerald-700' },
-    { date: '2026', title: '한정협 제모 스터디', org: '한의정보협동조합', tag: '강의', color: 'bg-emerald-100 text-emerald-700' }, // 정정 완료
-    { date: '2025', title: '마음침 강의', org: '사암침법학회 · 마음침법학회', tag: '강의', color: 'bg-emerald-100 text-emerald-700' }, // 정정 완료
-    { date: '2022 - 2025', title: '양생기능의학교실 학생연구원', org: '부산대학교 한의학전문대학원', tag: '연구', color: 'bg-blue-100 text-blue-700' },
+    { date: '2025', title: '한정협 제모 강의', org: '한의정보협동조합', tag: '강의', color: 'bg-emerald-100 text-emerald-700' }, // 정정 완료
+    { date: '2025', title: '마음침 강의', org: '사암침법학회·마음침법학회', tag: '강의', color: 'bg-emerald-100 text-emerald-700' }, // 정정 완료
+    { date: '2024', title: '동의방약학회 동계 학생부 강의', org: '동의방약학회', tag: '강의', color: 'bg-emerald-100 text-emerald-700' },
+    { date: '2024', title: 'MPS 캠프', org: '경근근막침연구회', tag: '강의', color: 'bg-emerald-100 text-emerald-700' },
+    { date: '2024', title: '근골격계 알고리즘 일차진료 마스터 강의', org: '메디스트림', tag: '강의', color: 'bg-emerald-100 text-emerald-700' },
+    { date: '2023', title: '통합방제한의학회 강의', org: '통합방제한의학회', tag: '강의', color: 'bg-emerald-100 text-emerald-700' },
+    { date: '2023', title: '동의보감 캠프', org: '형상의학회', tag: '강의', color: 'bg-emerald-100 text-emerald-700' },
     { date: '2023.01 - 2024.08', title: '동제의료봉사단 부회장', org: '부산대학교 한의학전문대학원', tag: '리더십', color: 'bg-purple-100 text-purple-700' },
     { date: '2022.08 - 2024.12', title: '진로탐색동아리 회장', org: '부산대학교 한의학전문대학원', tag: '리더십', color: 'bg-purple-100 text-purple-700' },
-    { date: '2024', title: '사암침 캠프', org: '메디스트림', tag: '강의', color: 'bg-emerald-100 text-emerald-700' },
-    { date: '2024', title: 'MPS 캠프', org: '메디스트림', tag: '강의', color: 'bg-emerald-100 text-emerald-700' },
-    { date: '2024', title: '근골격계 알고리즘 일차진료 마스터 강의', org: '메디스트림', tag: '강의', color: 'bg-emerald-100 text-emerald-700' },
+    { date: '2022 - 2025', title: '양생기능의학교실 석사연구원', org: '부산대학교 한의학전문대학원', tag: '연구', color: 'bg-blue-100 text-blue-700' },
+    { date: '2022', title: '사암침 캠프', org: '사람과하늘인간생명연구회', tag: '강의', color: 'bg-emerald-100 text-emerald-700' },
     { date: '2021', title: '물류연구실 공식 홈페이지 개발', org: '포항공과대학교', tag: '개발', color: 'bg-orange-100 text-orange-700' },
     { date: '2019 - 2022', title: '물류연구실 석·박사통합과정 연구원', org: '포항공과대학교', tag: '연구', color: 'bg-blue-100 text-blue-700' },
     { date: '2019.12 - 2020.12', title: '현대중공업 3D BPP 알고리즘 개발', org: '포항공과대학교', tag: '개발', color: 'bg-orange-100 text-orange-700' },
     { date: '2019.09 - 2020.12', title: '드론 배치 알고리즘 개발', org: '포항공과대학교', tag: '개발', color: 'bg-orange-100 text-orange-700' },
     { date: '2019', title: '빅데이터 처리 파이프라인 구축 인턴', org: '넷마블', tag: '개발', color: 'bg-orange-100 text-orange-700' },
-    { date: '2019.02 - 2019.11', title: 'R 프로그래밍 및 기초통계 MOOC 강의 조교', org: '포항공과대학교', tag: '교육', color: 'bg-indigo-100 text-indigo-700' },
-    { date: '2018', title: '생산설비 모니터링 시스템 구축 인턴', org: 'LG CNS', tag: '개발', color: 'bg-orange-100 text-orange-700' }
+    { date: '2019.02 - 2019.11', title: 'R 프로그래밍 MOOC 강의 조교', org: '포항공과대학교', tag: '교육', color: 'bg-indigo-100 text-indigo-700' },
+    { date: '2019.02 - 2019.11', title: '기초통계 MOOC 강의 조교', org: '포항공과대학교', tag: '교육', color: 'bg-indigo-100 text-indigo-700' },
+    { date: '2018', title: '생산 모니터링 시스템 구축 인턴', org: 'LG CNS', tag: '개발', color: 'bg-orange-100 text-orange-700' }
   ];
 
   const categories = ['All', '강의', '연구', '리더십', '개발', '교육'];
