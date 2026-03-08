@@ -68,15 +68,27 @@ const Portfolio = () => {
         )}
       </AnimatePresence>
 
-      {/* 1. Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-[#0f172a] text-white">
-        <div className="max-w-7xl mx-auto px-10 py-5 flex justify-between items-center font-black uppercase tracking-tighter italic">
-          <span>Lee Ju-eun</span>
-          <div className="hidden md:flex gap-10 text-[11px] tracking-[0.2em]">
-            <a href="#philosophy" className="hover:text-teal-400 transition-colors">Philosophy</a>
-            <a href="#experience" className="hover:text-teal-400 transition-colors">Experience</a>
-            <a href="#publications" className="hover:text-teal-400 transition-colors">Publications</a>
-            <a href="#awards" className="hover:text-teal-400 transition-colors">Awards</a>
+      {/* 1. Navigation (핵심 전략 위주로 재구성) */}
+      <nav className="fixed top-0 w-full z-50 bg-[#0f172a]/90 backdrop-blur-md text-white border-b border-white/5">
+        <div className="max-w-7xl mx-auto px-10 py-5 flex justify-between items-center font-black uppercase tracking-tighter">
+          <span className="text-3xl tracking-widest group cursor-default">
+          이주은 <span className="text-teal-400">한의사</span>
+          </span>
+          
+          {/* Awards를 제외하고 Philosophy와 Publications를 전면 배치 */}
+          <div className="hidden md:flex gap-12 text-[15px] tracking-[0.3em]">
+            <a href="#philosophy" className="hover:text-teal-400 transition-colors py-2 border-b-2 border-transparent hover:border-teal-400">
+              Strategy
+            </a>
+            <a href="#experience" className="hover:text-teal-400 transition-colors py-2 border-b-2 border-transparent hover:border-teal-400">
+              Experience
+            </a>
+            <a href="#publications" className="hover:text-teal-400 transition-colors py-2 border-b-2 border-transparent hover:border-teal-400 font-bold">
+              Research
+            </a>
+            <a href="#contact" className="hover:text-teal-400 transition-colors py-2 border-b-2 border-transparent hover:border-teal-400">
+              Contact
+            </a>
           </div>
         </div>
       </nav>
@@ -90,7 +102,7 @@ const Portfolio = () => {
             </div>
             <h1 className="text-5xl md:text-[5.5rem] font-black mb-10 leading-[1] tracking-tight">
               마음으로 공감하고 <br/>
-              <span className="text-teal-400">근거로 진료하는</span> 한의사
+              <span className="text-teal-400">근거로 진료합니다</span>
             </h1>
             <p className="text-xl text-slate-400 font-medium leading-relaxed max-w-2xl">따뜻한 진심과 냉철한 논리를 바탕으로 환자에게 가장 적절한 선택을 제안합니다.</p>
           </div>
@@ -106,7 +118,7 @@ const Portfolio = () => {
       <section id="philosophy" className="py-32 px-10 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-32">
-            {/* Philosophy 섹션 - 자기소개서 내용 기반 */}
+            {/* Philosophy 섹션 - 자기소개서 내용 */}
             <div>
               <h2 className="text-3xl font-black text-[#0f172a] mb-12 tracking-tight uppercase border-l-4 border-teal-500 pl-6">Philosophy</h2>
               <div className="space-y-12">
@@ -170,10 +182,10 @@ const Portfolio = () => {
         </div>
       </section>
 
-      {/* 4. Professional Experience (필터 버튼 & 팩트 정정) */}
+      {/* 4. Experience (필터 버튼 & 팩트 정정) */}
       <section id="experience" className="py-32 px-10 bg-slate-50">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl font-black text-[#0f172a] mb-12 tracking-tight uppercase text-center">Professional Experience</h2>
+          <h2 className="text-3xl font-black text-[#0f172a] mb-12 tracking-tight uppercase text-center">Experiences</h2>
           
           <div className="flex flex-wrap justify-center gap-3 mb-16">
             {categories.map((cat) => (
@@ -212,7 +224,7 @@ const Portfolio = () => {
       {/* 5. Publications (설명 문구 추가 버전) */}
       <section id="publications" className="py-40 bg-[#0f172a] text-white px-10">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-black text-teal-400 mb-24 uppercase italic tracking-tighter">Featured Publications</h2>
+          <h2 className="text-4xl font-black text-teal-400 mb-24 uppercase tracking-tighter">Research</h2>
           <div className="space-y-32">
             {[ 
               { 
