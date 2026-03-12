@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react'; // useEffect 추가 확인
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, Phone, ExternalLink, ArrowUpRight, Check, X } from 'lucide-react';
 
@@ -6,6 +6,25 @@ const Portfolio = () => {
   const [activeFilter, setActiveFilter] = useState('All');
   const [selectedImg, setSelectedImg] = useState(null); // 추가
   const [isProfileOpen, setIsProfileOpen] = useState(false);
+
+  const [currentImgIndex, setCurrentImgIndex] = useState(0);
+  const profileImages = [
+      "/profile.jpg",   // 첫 번째 사진
+      "/profile2.jpg",  // 두 번째 사진 
+      "/profile3.png",  // 세 번째 사진
+      "/practice1.jpg",
+      "/practice2.jpg",
+      "/profile3.jpg",
+      "/acu1.jpg"   // 
+    ];
+
+  useEffect(() => {
+      const timer = setInterval(() => {
+        setCurrentImgIndex((prev) => (prev + 1) % profileImages.length);
+      }, 3000); 
+      return () => clearInterval(timer); // 메모리 누수 방지
+    }, [profileImages.length]);
+
 
   // 1. 모든 경험 데이터 통합 (기관명: 한의정보협동조합 확정 및 문구 정제)
   const experiences = [
@@ -123,14 +142,27 @@ const Portfolio = () => {
         </div>
 
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center relative z-10">
-          {/* 프로필 이미지 영역 */}
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.4 }}
-            className="lg:col-span-4 aspect-[4/5] bg-slate-800 rounded-[3rem] overflow-hidden shadow-2xl relative group border border-white/10"
-          >
-            <img src="/profile.jpg" alt="한의사 이주은" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a] via-transparent to-transparent opacity-40"></div>
-          </motion.div>
+        {/* 프로필 이미지 영역 */}
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }} 
+          animate={{ opacity: 1, scale: 1 }} 
+          transition={{ delay: 0.4 }}
+          className="lg:col-span-4 aspect-[4/5] bg-slate-800 rounded-[3rem] overflow-hidden shadow-2xl relative group border border-white/10"
+        >
+          <AnimatePresence mode="wait">
+            <motion.img 
+              key={currentImgIndex} // 이 key값이 바뀌어야 애니메이션이 작동합니다
+              src={profileImages[currentImgIndex]} 
+              alt="한의사 이주은" 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5 }} // 전환 효과 0.5초
+              className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" 
+            />
+          </AnimatePresence>
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a] via-transparent to-transparent opacity-40"></div>
+        </motion.div>
 
           {/* 텍스트 메인 영역 */}
           <div className="lg:col-span-8">
