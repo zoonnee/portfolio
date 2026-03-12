@@ -12,8 +12,8 @@ const Portfolio = () => {
       "/profile.jpg",   // 첫 번째 사진
       "/profile2.jpg",  // 두 번째 사진 
       "/profile3.png",  // 세 번째 사진
+      "/derma1.png",
       "/practice1.jpg",
-      "/practice2.jpg",
       "/profile3.jpg",
       "/acu1.jpg"   // 
     ];
