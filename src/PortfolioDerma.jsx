@@ -10,7 +10,7 @@ const PortfolioDerma = () => {
   const [currentImgIndex, setCurrentImgIndex] = useState(0);
   const profileImages = [
       "/profile.jpg",   // 첫 번째 사진
-      "/profile2.jpg",  // 두 번째 사진 
+      //"/profile2.jpg",  // 두 번째 사진 
       "/profile3.png",
       "/derma/derma1.png",
       "/derma/atopyray.jpg",
